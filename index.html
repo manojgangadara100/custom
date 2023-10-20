@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Include necessary libraries and stylesheets -->
+  <link rel="stylesheet" type="text/css" href="ccp-styles.css">
+  <!-- Include the Amazon Connect Streams API library -->
+  <script src="https://static.connect.aws/ccp/1.4.0/connect-streams.js"></script>
+  <style>
+    /* Custom CSS for positioning and styling the button */
+    #customButton {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 999;
+      background-color: #0074e4; /* Blue background color */
+      color: #fff; /* White text color */
+      padding: 10px 20px; /* Padding around the text */
+      border: none; /* No border */
+      cursor: pointer; /* Cursor style on hover */
+    }
+  </style>
+</head>
+<body>
+  <!-- Your CCP user interface elements -->
+  <div id="container-div" style="float:left; width: 400px; height: 800px;"></div>
+  <!-- Custom "Connx AI" button -->
+  <button id="customButton">Connx AI</button>
+
+  <!-- Include JavaScript for initializing the CCP after ConnectAPI is loaded -->
+  <script>
+    // Ensure that the ConnectAPI is loaded before using it
+    window.addEventListener('connectStreamsJsLoaded', function() {
+      // Initialize the Amazon Connect Streams API
+      const connect = new ConnectAPI();
+
+      connect.core.initCCP(document.getElementById('container-div'), {
+        ccpUrl: 'https://demo-connxai.my.connect.aws/agent-app-v2?referrer=admin',
+        loginPopup: true,
+        region: 'us-east-1', // Replace with your AWS region (e.g., US East (N. Virginia))
+      });
+
+      // Add functionality to the custom button
+      const customButton = document.getElementById('customButton');
+      customButton.addEventListener('click', function () {
+        // Add your custom functionality here when the button is clicked.
+        // For example, you can trigger actions related to "Connx AI."
+      });
+    });
+  </script>
+</body>
+</html>
